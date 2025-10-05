@@ -1,9 +1,8 @@
 import telebot
 from telebot.types import Message
-from telebot import types
 
 from settings import tg_key
-from tg_API.keyboards import main_keyboard
+from tg_API.keyboards.reply import main_keyboard
 
 bot = telebot.TeleBot(tg_key)
 

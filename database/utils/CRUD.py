@@ -20,7 +20,16 @@ def _retrieve_all_data(db: db, model: T, *columns: ModelBase) -> ModelSelect:
     return response
 
 
-# def delete_data(db: db, model: T, *data: List[Dict]) -> None:
+def _update_data(db, model: T, updates: dict, where_condition) -> None:
+    with db.atomic():
+        query = model.update(**updates).where(where_condition)
+        query.execute()
+
+
+def _delete_data(db, model: T, where_condition) -> None:
+    with db.atomic():
+        query = model.delete().where(where_condition)
+        query.execute()
 
 
 class CRUDInterface():
@@ -32,8 +41,18 @@ class CRUDInterface():
     def retrieve():
         return _retrieve_all_data
 
+    @staticmethod
+    def update():
+        return _update_data
+
+    @staticmethod
+    def delete():
+        return _delete_data
+
 
 if __name__ == 'main':
     _store_date()
     _retrieve_all_data()
+    _update_data()
+    _delete_data()
     CRUDInterface()

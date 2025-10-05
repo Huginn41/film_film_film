@@ -31,10 +31,10 @@ class SiteApiInterface():
         return _get_search_result
 
 
-def pars_film_data(moviee_data):
+def pars_film_data(movie_data):
     movies = []
 
-    for movie_data in moviee_data:
+    for movie_data in movie_data:
         movie = {
             'movie_name': movie_data.get('name', 'Неизвестно'),
             'description': movie_data.get('description'),

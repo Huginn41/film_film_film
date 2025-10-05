@@ -30,10 +30,8 @@ def search_film(query: str, page: int = 1, limit: int = 1) -> Dict:
     params = {
         'page': 1,
         'limit': 1,
-        'query': 'Виноваты звезды'
+        'query': query
     }
-
-    #db_read = crud.retrieve()
 
     film_search = SiteApiInterface.find_film()
 
@@ -57,6 +55,7 @@ def search_film(query: str, page: int = 1, limit: int = 1) -> Dict:
     except Exception as e:
         print(f"Ошибка при поиске фильма '{query}': {e}")
         return {}
+
 
 if __name__ == 'main':
     search_film()
